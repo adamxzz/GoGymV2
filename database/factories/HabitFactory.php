@@ -17,7 +17,9 @@ class HabitFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            "name" => $this->faker->word,
+            "description" => $this->faker->text(200),
+            "type" => "yes_no"
         ];
     }
 }

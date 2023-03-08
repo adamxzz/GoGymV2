@@ -13,6 +13,6 @@ class HabitSeeder extends Seeder
      */
     public function run(): void
     {
-        // Habit::factory()->times(10)->create();
+        Habit::factory()->times(10)->create();
     }
 }
