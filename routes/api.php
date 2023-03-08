@@ -21,8 +21,23 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+// every route within these curly brackets require authentication token
+Route::middleware('auth:sanctum')->group(function (){
+    Route::post('/auth/logout',[AuthController::class, 'logout']);
+    Route::get('/auth/user',[AuthController::class, 'user']);
+
+    // You need to be logged in for all book functionality except get all and get by id
+    // Route::apiResource('/books', BookController::class)->except((['index', 'show']));
+
+    Route::apiResource('/habits', HabitController::class);
+
+
+});
+
+// Route::get('/books', [BookController::class, 'index']);
+// Route::get('/books/{book}', [BookController::class, 'show']);
+
 Route::post('/auth/register', [AuthController::class, 'register']);
 Route::post('/auth/login', [AuthController::class, 'login']);
 
-Route::apiResource('/habits', HabitController::class);
 Route::apiResource('/workouts', WorkoutController::class);
