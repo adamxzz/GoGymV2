@@ -13,6 +13,7 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         $this->call(HabitSeeder::class);
+        $this->call(WorkoutSeeder::class);
 
     }
 }

@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Workout;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -12,6 +13,6 @@ class WorkoutSeeder extends Seeder
      */
     public function run(): void
     {
-        //
+        Workout::factory()->times(10)->create();
     }
 }

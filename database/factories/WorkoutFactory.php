@@ -17,7 +17,14 @@ class WorkoutFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            "dates" => $this->faker->date,
+            "workouttype" => "bench",
+            "sets" => $this->faker->randomDigit,
+            "reps" => $this->faker->randomDigit,
+            "weight" => $this->faker->randomDigit,
+            "duration" => $this->faker->randomDigit,
+            "comment" => $this->faker->text(200),
+            "user_id" => "1"
         ];
     }
 }

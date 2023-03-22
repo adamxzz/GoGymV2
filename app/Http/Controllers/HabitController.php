@@ -25,7 +25,7 @@ class HabitController extends Controller
     public function store(Request $request)
     {
         $habit = Habit::create($request->only([
-            'name','description','type'
+            'name','description','type','user_id'
         ]));
         return new HabitResource($habit);
     }

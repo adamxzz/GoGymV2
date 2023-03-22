@@ -11,15 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('workouts', function (Blueprint $table) {
+        Schema::create('entries', function (Blueprint $table) {
             $table->id();
-            $table->date('dates');
-            $table->string('workouttype');
-            $table->integer('sets');
-            $table->integer('reps');
-            $table->integer('weight');
-            $table->integer('duration');
-            $table->text('comment');
+            $table->foreign('habit_id')->references('id')->on('habit');
+            $table->date('date');
             $table->timestamps();
         });
     }
@@ -29,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('workouts');
+        Schema::dropIfExists('entries');
     }
 };

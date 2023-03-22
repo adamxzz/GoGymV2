@@ -24,7 +24,7 @@ class WorkoutController extends Controller
     public function store(Request $request)
     {
         $workout = Workout::create($request->only([
-            'dates', 'sets', 'reps', 'weight', 'duration', 'comment', 'workouttype'
+            'dates' , 'workouttype', 'sets', 'reps', 'weight', 'duration', 'comment', 'user_id'
         ]));
         return new WorkoutResource($workout);
     }
@@ -43,7 +43,7 @@ class WorkoutController extends Controller
     public function update(Request $request, Workout $workout)
     {
         $workout->update($request->only([
-            'dates', 'sets', 'reps', 'weight', 'duration', 'comment', 'workouttype'
+            'dates' , 'workouttype', 'sets', 'reps', 'weight', 'duration', 'comment'
         ]));
         return new WorkoutResource($workout);
     }

@@ -2,7 +2,7 @@
   
 namespace App\Enums;
  
-enum TypeEnum:string {
+enum WorkoutTypeEnum:string {
     case Bench = 'bench';
     case Squat = 'squat';
     case Deadlift = 'deadlift';
