@@ -44,7 +44,7 @@ class HabitController extends Controller
     public function update(Request $request, Habit $habit)
     {
         $habit->update($request->only([
-            'name','description','type'
+            'name','description','type', 'user_id'
         ]));
         return new HabitResource($habit);
     }

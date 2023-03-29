@@ -15,11 +15,11 @@ return new class extends Migration
             $table->id();
             $table->date('dates');
             $table->string('workouttype');
-            $table->integer('sets');
-            $table->integer('reps');
-            $table->integer('weight');
-            $table->integer('duration');
-            $table->text('comment');
+            $table->integer('sets')->nullable();
+            $table->integer('reps')->nullable();
+            $table->integer('weight')->nullable();
+            $table->integer('duration')->nullable();
+            $table->text('comment')->nullable();
             $table->timestamps();
         });
     }

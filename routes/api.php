@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HabitController;
 use App\Http\Controllers\WorkoutController;
+use App\Http\Controllers\EntriesController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -34,10 +35,9 @@ Route::middleware('auth:sanctum')->group(function (){
 
 });
 
-// Route::get('/books', [BookController::class, 'index']);
-// Route::get('/books/{book}', [BookController::class, 'show']);
 
 Route::post('/auth/register', [AuthController::class, 'register']);
 Route::post('/auth/login', [AuthController::class, 'login']);
 
 Route::apiResource('/workouts', WorkoutController::class);
+Route::apiResource('/entries', EntriesController::class);

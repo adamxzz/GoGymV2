@@ -5,7 +5,7 @@ namespace App\Http\Resources;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class HabitResource extends JsonResource
+class EntriesResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -16,9 +16,9 @@ class HabitResource extends JsonResource
     {
         return[
             'id' => $this->id,
-            'name' => $this->name,
-            'description' => $this->description,
-            'type' => $this->type,            
+            'habit_id' => $this->name,
+            'entry' => $this->entry,
+            'datetime' => $this->datetime,            
         ];
     }
 }

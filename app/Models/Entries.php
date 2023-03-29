@@ -8,6 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class Entries extends Model
 {
     use HasFactory;
-    protected $fillable = ['habit_id', 'entry', "date" ];
+    protected $fillable = ['habit_id','entry', 'datetime' ];
 
 }

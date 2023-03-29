@@ -14,6 +14,7 @@ class DatabaseSeeder extends Seeder
     {
         $this->call(HabitSeeder::class);
         $this->call(WorkoutSeeder::class);
+        $this->call(EntriesSeeder::class);
 
     }
 }

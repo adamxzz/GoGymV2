@@ -13,8 +13,10 @@ return new class extends Migration
     {
         Schema::create('entries', function (Blueprint $table) {
             $table->id();
-            $table->foreign('habit_id')->references('id')->on('habit');
-            $table->date('date');
+            $table->unsignedBigInteger('habit_id');
+            $table->foreign('habit_id')->references('id')->on('habits');
+            $table->string('entry');
+            $table->datetime('datetime');
             $table->timestamps();
         });
     }
