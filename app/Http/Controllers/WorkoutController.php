@@ -7,6 +7,7 @@ use App\Http\Resources\WorkoutResource;
 use App\Models\Workout;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Auth;
 
 class WorkoutController extends Controller
 {
@@ -16,6 +17,31 @@ class WorkoutController extends Controller
     public function index()
     {
         return new WorkoutCollection(Workout::all());
+    }
+
+    public function getChartData($type)
+    {
+
+        // $myData = Workout::where('user_id', Auth::id())->distinct()->orderBy('dates', 'asc')->get();
+        $myData = Workout::select('weight', 'dates')->where('user_id', Auth::id())->where('workouttype', $type)->distinct()->orderBy('dates', 'asc')->get();
+        $dates = [];
+        $weights = [];
+
+        foreach($myData as $data){
+            array_push($dates, $data->dates);
+            array_push($weights, $data->weight);
+        }
+
+        return response()->json([
+            'type' => $type,
+            'labels' => $dates,
+            'weights' => [
+                'id' => 1,
+                'label' => 'Weights',
+                'data' => $weights
+            ],
+        ]);
+        // return new WorkoutCollection(Workout::where('user_id', Auth::id())->get());
     }
 
     /**

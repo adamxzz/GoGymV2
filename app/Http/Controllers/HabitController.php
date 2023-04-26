@@ -7,7 +7,7 @@ use App\Http\Resources\HabitResource;
 use App\Models\Habit;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-
+use Illuminate\Support\Facades\Auth;
 
 class HabitController extends Controller
 {
@@ -19,14 +19,29 @@ class HabitController extends Controller
         return new HabitCollection(Habit::all());
     }
 
+    public function getbyAuth(){
+       
+        return new HabitCollection(Habit::where('user_id', Auth::id())->get());
+    }
+
     /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
     {
-        $habit = Habit::create($request->only([
-            'name','description','type','user_id'
-        ]));
+        // $habit = Habit::create($request->only([
+        //     'name','description','type','user_id'
+        // ]));
+
+        $habit = Habit::create(
+            [
+                'name' => $request->name,
+                'description' => $request->description,
+                'type' => $request->type,
+                'user_id' => Auth::id()
+            ]);
+
+
         return new HabitResource($habit);
     }
 

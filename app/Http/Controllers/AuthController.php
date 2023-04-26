@@ -92,7 +92,8 @@ class AuthController extends Controller
             return response()->json([
                 'status' => true,
                 'message' => 'User Logged In Successfully',
-                'token' => $user->createToken("book-store-token")->plainTextToken
+                'token' => $user->createToken("book-store-token")->plainTextToken,
+                'name' => $user->name
             ], 200);
 
         }

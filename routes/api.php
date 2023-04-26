@@ -29,7 +29,8 @@ Route::middleware('auth:sanctum')->group(function (){
 
     // You need to be logged in for all book functionality except get all and get by id
     // Route::apiResource('/books', BookController::class)->except((['index', 'show']));
-
+    Route::get('/habits/auth', [HabitController::class, 'getByAuth']);
+    Route::get('/workouts/chart/{type}', [WorkoutController::class, 'getChartData']);
     Route::apiResource('/habits', HabitController::class);
 
 
