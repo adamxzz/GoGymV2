@@ -19,6 +19,11 @@ class WorkoutController extends Controller
         return new WorkoutCollection(Workout::all());
     }
 
+    public function getbyAuth(){
+       
+        return new WorkoutCollection(Workout::where('user_id', Auth::id())->get());
+    }
+
     public function getChartData($type)
     {
 
@@ -39,7 +44,7 @@ class WorkoutController extends Controller
                 'id' => 1,
                 'label' => 'Weights',
                 'data' => $weights
-            ],
+            ]
         ]);
         // return new WorkoutCollection(Workout::where('user_id', Auth::id())->get());
     }
@@ -49,9 +54,24 @@ class WorkoutController extends Controller
      */
     public function store(Request $request)
     {
-        $workout = Workout::create($request->only([
-            'dates' , 'workouttype', 'sets', 'reps', 'weight', 'duration', 'comment', 'user_id'
-        ]));
+        // $workout = Workout::create($request->only([
+        //     'dates' , 'workouttype', 'sets', 'reps', 'weight', 'duration', 'comment', 'user_id'
+        // ]));
+        // return new WorkoutResource($workout);
+
+        $workout = Workout::create(
+            [
+                'dates' => $request->dates,
+                'workouttype' => $request->workouttype,
+                'sets' => $request->sets,
+                'reps' => $request->reps,
+                'weight' => $request->weight,
+                'duration' => $request->duration,
+                'comment' => $request->comment,
+                'user_id' => Auth::id()
+            ]);
+
+
         return new WorkoutResource($workout);
     }
 
@@ -69,7 +89,7 @@ class WorkoutController extends Controller
     public function update(Request $request, Workout $workout)
     {
         $workout->update($request->only([
-            'dates' , 'workouttype', 'sets', 'reps', 'weight', 'duration', 'comment'
+            'dates' , 'workouttype', 'sets', 'reps', 'weight', 'duration', 'comment' 
         ]));
         return new WorkoutResource($workout);
     }

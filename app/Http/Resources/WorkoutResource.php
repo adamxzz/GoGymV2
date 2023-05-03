@@ -16,7 +16,7 @@ class WorkoutResource extends JsonResource
     {
         return[
             'id' => $this->id,
-            'date' => $this->date,
+            'dates' => $this->dates,
             'sets' => $this->sets,
             'reps' => $this->reps,
             'weight' => $this->weight,
